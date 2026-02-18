@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandora Therapeutics - RESTORE Business Plan</title>
+    <style>
+        :root {
+            --color-bg-primary: #0d0d0d;
+            --color-bg-secondary: #003233;
+            --color-bg-elevated: #004d4e;
+            --color-accent: #99cccd;
+            --color-accent-hover: #66b3b4;
+            --color-accent-bright: #339a9c;
+            --color-text-primary: #faf8f2;
+            --color-text-secondary: #b3a4ae;
+            --color-highlight: #f8bb37;
+            --color-border: rgba(153, 204, 205, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Gambarino', Georgia, serif;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company-title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .company-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .company-title p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: var(--color-bg-elevated);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .nav-tab.active {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .metric-box {
+            background: var(--color-bg-elevated);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .metric-sub {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--color-bg-elevated);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-bg-primary);
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        td {
+            color: var(--color-text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.05) 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: var(--color-bg-elevated);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .tech-item h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-item p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--color-success);
+        }
+
+        .status-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--color-warning);
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: -1.7rem;
+            top: 12px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background: var(--color-border);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .timeline-item h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-tabs {
+                width: 100%;
+            }
+
+            .nav-tab {
+                flex: 1;
+                text-align: center;
+                padding: 0.5rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .company-title h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="company-title">
+                <h1>Pandora Therapeutics</h1>
+                <p>RESTORE™ Hair Restoration System | Business Plan 2026</p>
+            </div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+                <button class="nav-tab" onclick="showSection('product')">Product</button>
+                <button class="nav-tab" onclick="showSection('technology')">Technology</button>
+                <button class="nav-tab" onclick="showSection('financials')">Financials</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- OVERVIEW SECTION -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <h2>Executive Summary</h2>
+                <div class="highlight-box">
+                    <p><strong>Pandora Therapeutics</strong> is a pharmaceutical manufacturing company producing RESTORE™, a science-backed topical regeneration therapy for hair growth and tissue repair. RESTORE operates on a stress-free regeneration principle: delivering 14 bioactive molecules via Hybrid Cooperative Complex Hyalurosomes (HCC-HA) in a 6-night-on, 1-night-off protocol that maintains tissue at 50-70% therapeutic saturation—the zone where continuous healing occurs without triggering adaptive shut-down.</p>
+                    <p style="margin-top: 1rem;">We combine proprietary VF-CIJ manufacturing (continuous-flow liposomal production with inline ethanol removal) and AI-driven go-to-market intelligence (PrometheusAgentic) to deliver sustained profitability and category innovation in the $26.7B global hair restoration market.</p>
+                </div>
+
+                <div class="grid grid-4" style="margin-top: 2rem;">
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 Revenue</div>
+                        <div class="metric-value">$69.7M</div>
+                        <div class="metric-sub">64,653 subscribers</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 EBITDA</div>
+                        <div class="metric-value">$37.9M</div>
+                        <div class="metric-sub">54.4% margin</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">COGS per Unit</div>
+                        <div class="metric-value">$5.43</div>
+                        <div class="metric-sub">97.1% gross margin</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">LTV : CAC</div>
+                        <div class="metric-value">11.9x</div>
+                        <div class="metric-sub">World-class unit economics</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-top: 1.5rem;">
+                    <div class="metric-box">
+                        <div class="metric-label">Global Market (2026)</div>
+                        <div class="metric-value">$26.7B</div>
+                        <div class="metric-sub">Growing 16.6% CAGR</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Liposomal Cosmetics</div>
+                        <div class="metric-value">$2.5B</div>
+                        <div class="metric-sub">8.5% CAGR (hair care emerging)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Competitive Pricing</div>
+                        <div class="metric-value">$189/mo</div>
+                        <div class="metric-sub">vs. $16-60 (Hims, Keeps)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Competitive Advantages</h2>
+                <div class="grid grid-2">
+                    <div class="tech-item">
+                        <h4>1. Proprietary VF-CIJ Manufacturing</h4>
+                        <p>Continuous-flow system for lipid nanoparticle production. Rapid mixing (milliseconds) causes lipids to self-assemble into nano-sized particles. Inline vacuum flash evaporation removes 70-90% ethanol immediately, cutting downstream processing costs. Ethanol recycled (80% waste reduction). Produces 4.8M liters/year at 50 L/min nameplate. Creates 2-3 year barrier to entry—no competitor matches this throughput with inline solvent removal.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>2. MLOps Smart Autopilot</h4>
+                        <p>Machine learning layer monitors real-time sensors (Raman, refractive index, conductivity, temperature, flow, vacuum pressure) to predict particle size, uniformity, encapsulation efficiency before lab confirmation. Makes small adjustments to keep product centered in quality target. Learns from every batch, suggesting improved conditions for next run. Faster startup (2+ minutes saved), fewer rejections (diversions cut 50%), tighter consistency, lower costs. FDA-compliant logging (21 CFR Part 11).</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>3. PrometheusAgentic GTM Intelligence</h4>
+                        <p>Seven-hub platform answers: who to focus on, why now, what to say. Builds "mosaic" of independent signals (search trends, reviews, press, sales, influencer activity) each tagged with source, confidence, recency. Identifies 20 micro-creators with 5-6:1 ROAS instead of guessing on macro influencers. Validates messaging 40% more resonant before major spend. Compresses 12-month learning curve into 8 months. Cuts CAC 25-35% via closed-loop recalibration.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>4. Science-Backed Tissue-First Model</h4>
+                        <p>14 actives in HCC hyalurosomes target structural repair (collagen synthesis), protection (antioxidant defense), energy metabolism (ATP production), and perfusion (blood flow). Maintains 50-70% tissue saturation for continuous regeneration without plateau. 6-on/1-off protocol prevents receptor desensitization. Sustained efficacy over months, not weeks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Market Opportunity & Timing (2026)</h3>
+                <div class="grid grid-2">
+                    <div class="tech-item">
+                        <h4>Market Scale & Growth</h4>
+                        <p>Global hair restoration: $6.46B (2023) → $18.9B (2030), 16.6% CAGR. Hair regrowth treatments alone: $7.8B (2025) → $16.9B (2035). U.S. maintains 21% global share driven by telehealth adoption and subscription models. 4.3M procedures performed globally in 2024.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Liposomal Technology Convergence</h4>
+                        <p>Liposomal cosmetics: $2.5B market growing 8.5% CAGR. Hair care emerging as high-growth application with biotin, keratin, and nutrient delivery to follicles. VF-CIJ manufacturing creates defensible position as market transitions from generic to advanced delivery systems.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Competitive Fragmentation</h4>
+                        <p>Budget tier ($16-60/mo): GoodRx ($16), Hims ($15-60), Keeps ($33-60)—mass market DTC with generic Rx. Premium tier ($130-180/3mo): Multi-ingredient bundles. Ultra-premium tier (RESTORE): Uncontested space for proprietary liposomal multi-pathway systems.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Regulatory & Consumer Trends</h4>
+                        <p>Shift toward non-Rx cosmetic solutions avoiding sexual dysfunction side effects (finasteride). Rising demand for natural, organic, multi-pathway products. E-commerce and social media driving specialty serum adoption. Subscription models proven with 92% retention rates feasible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SECTION -->
+        <div id="product" class="section">
+            <div class="card">
+                <h2>RESTORE™ Product Overview</h2>
+                <p>RESTORE is a topical regeneration therapy delivering 14 bioactive molecules via Hybrid Cooperative Complex Hyalurosomes (HCC-HA). Applied 6 nights per week with 1 rest day, it maintains tissue at 50-70% therapeutic saturation for continuous healing without adaptive shutdown.</p>
+
+                <h3>The Four Pillars of Regeneration</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>Pillar 1: Structural Repair</h4>
+                        <p><strong>Actives:</strong> L-Ascorbic Acid (3.0% w/v), Ferulic Acid (0.125%), CoQ10 (0.075%), α-Tocopherol, Hyaluronic Acid Complex (2.0%)<br>
+                        <strong>Function:</strong> Support collagen and elastin synthesis, provide fibroblast energy, stabilize structural proteins<br>
+                        <strong>Outcome:</strong> 30-40% increase in dermal collagen density, improved skin elasticity, denser dermis creates supportive follicle niche</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 2: Protection (Antioxidant Defense)</h4>
+                        <p><strong>Actives:</strong> Melatonin (0.025%), Luteolin (0.005%), Reduced Glutathione (0.075%), EUK-134 (0.01%), Phytic Acid (0.20%)<br>
+                        <strong>Function:</strong> Neutralize ROS at multiple levels, suppress inflammation, prevent ferroptosis, modulate senescence<br>
+                        <strong>Outcome:</strong> 50-70% reduction in oxidative stress markers, preserved hair matrix cell viability, extended anagen phase 15-30%</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 3: Energy Metabolism</h4>
+                        <p><strong>Actives:</strong> Creatine (0.25%), L-Carnitine L-Tartrate (0.375%), Adenosine (0.1875%), Inositol (0.0675%)<br>
+                        <strong>Function:</strong> Enhance mitochondrial ATP production, improve fatty acid oxidation, support calcium signaling<br>
+                        <strong>Outcome:</strong> 40-60% improvement in fibroblast/keratinocyte energy status, enhanced cellular proliferation, sustained mitochondrial function</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 4: Perfusion & Angiogenesis</h4>
+                        <p><strong>Actives:</strong> L-Citrulline (0.75%), Adenosine (dual role)<br>
+                        <strong>Function:</strong> Increase nitric oxide production, activate vascular growth factors, promote capillary formation<br>
+                        <strong>Outcome:</strong> 20-40% improvement in dermal blood flow, new capillary formation in ischemic areas, prevents hypoxia-triggered catagen</p>
+                    </div>
+                </div>
+
+                <h3>HCC Hyalurosome Delivery Technology</h3>
+                <div class="grid grid-2">
+                    <div class="metric-box">
+                        <div class="metric-label">Particle Size</div>
+                        <div class="metric-value">150-200nm</div>
+                        <div class="metric-sub">Nano-delivery vehicles</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Tissue Residence Time</div>
+                        <div class="metric-value">28-35 days</div>
+                        <div class="metric-sub">3.5-5× longer than standard</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Collagen Synthesis Boost</div>
+                        <div class="metric-value">7-12%</div>
+                        <div class="metric-sub">vs free actives or standard liposomes</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Shelf Stability</div>
+                        <div class="metric-value">6 months</div>
+                        <div class="metric-sub">No harsh preservatives needed</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 1rem;">
+                    <p><strong>HCC Advantage:</strong> Dual molecular weight hyaluronic acid (50% low-MW for penetration, 50% high-MW for depot retention) creates hydrogen-bonded cooperative network. Protects actives from oxidation, guides delivery via CD44 receptors, enables sustained release over weeks. Natural stabilization without surfactants or chelating agents.</p>
+                </div>
+
+                <h3>Clinical Timeline: What to Expect</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Week 1-2: Establishment</h4>
+                        <p>Hyalurosomes distribute throughout dermis, receptors engage fully, tissue energy improves. First subjective reports: improved scalp feel, reduced dryness, less redness.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 3-4: Tissue Response</h4>
+                        <p>Collagen synthesis visible in dermis (skin texture improves), hair follicle matrix cells fully engaged in anagen, scalp inflammation declining, skin radiance increases.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 5-8: Compounding Effects</h4>
+                        <p>Vascular density increasing (scalp perfusion improved), hair shaft diameter increasing (thicker, stronger hair), collagen deposition accelerating, fine lines significantly reduced.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 8-12: Meaningful Change</h4>
+                        <p>Hair density beginning to increase (new follicles shifted to anagen), shedding reduced 40-50%, skin texture/elasticity/hydration substantially improved, sustained improvement without plateau.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Month 4-6: Continued Compounding</h4>
+                        <p>Hair regrowth obvious (hairline, crown, previously thinning areas), 40-60% improvement in objective hair count, skin appears 5-10 years younger, efficacy continues improving—no plateau observed.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 1rem;">
+                    <p><strong>Why RESTORE Doesn't Plateau:</strong> Traditional treatments hit ceiling at 20-30% improvement because they address one bottleneck. RESTORE's tissue-first approach addresses all five dimensions simultaneously (follicle energy, perfusion, oxidative stress, inflammation, dermal structure), delivering sustained improvement without diminishing returns.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECHNOLOGY SECTION -->
+        <div id="technology" class="section">
+            <div class="card">
+                <h2>Technology Stack</h2>
+                <p>Pandora's competitive moat is built on two validated platforms: VF-CIJ manufacturing and PrometheusAgentic GTM intelligence.</p>
+
+                <h3>1. VF-CIJ Manufacturing Platform</h3>
+                <div class="highlight-box">
+                    <p><strong>Pandora VF-CIJ</strong> is a continuous-flow manufacturing system for lipid nanoparticles. It rapidly mixes lipids dissolved in ethanol with aqueous buffer in milliseconds using high-velocity jets, causing self-assembly into nano-sized particles. Immediately after mixing, inline vacuum flash evaporation removes 70-90% of ethanol at low pressure. Evaporated ethanol is condensed, purified through molecular sieves, and recycled—cutting solvent waste by 80% compared to traditional methods.</p>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>How It Works</h4>
+                        <p><strong>Step 1: Rapid Mixing</strong> – High-velocity jets create millisecond contact between lipid and aqueous streams, triggering nano-assembly<br>
+                        <strong>Step 2: Inline Solvent Removal</strong> – Vacuum flash evaporation (100-200 mbar, 30-42°C) removes most ethanol in seconds, not hours<br>
+                        <strong>Step 3: Ethanol Recovery</strong> – Two-stage condensation captures ≥99.5% vapor; molecular sieve purifies for reuse<br>
+                        <strong>Result:</strong> Drastically reduced downstream processing time and costs. 4.8M liters/year capacity at 50 L/min nameplate.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>MLOps: Smart Autopilot for Manufacturing</h4>
+                        <p><strong>Real-Time Monitoring:</strong> Sensors track Raman spectroscopy, refractive index, conductivity, temperature, flow rates, vacuum pressure<br>
+                        <strong>Quality Prediction:</strong> Predicts particle size, uniformity, encapsulation efficiency before lab tests confirm them<br>
+                        <strong>Adaptive Adjustments:</strong> When confident, makes small, safe changes to inlet temps or vacuum pressure to keep product centered in quality target<br>
+                        <strong>Learning:</strong> After each batch, updates understanding of how lipid formulations behave and suggests improved starting conditions<br>
+                        <strong>Result:</strong> Faster startup (2+ min saved/batch), fewer rejections (diversions cut 50%), tighter consistency, lower costs. FDA-compliant logging (21 CFR Part 11).</p>
+                    </div>
+                </div>
+
+                <h3>2. PrometheusAgentic GTM Platform</h3>
+                <div class="highlight-box">
+                    <p><strong>PrometheusAgentic</strong> is a go-to-market and market intelligence platform answering three questions: who to focus on, why now, and what to say. Instead of relying on expensive data feeds, it builds a "mosaic" of independent signals—search trends, reviews, press, sales data, influencer activity—each tagged with source, confidence, and recency. When signals agree, confidence rises; when they conflict, the system surfaces disagreement rather than hiding it.</p>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>Seven-Hub Architecture</h4>
+                        <p><strong>Company Hub:</strong> Ranked accounts with "why now" drivers<br>
+                        <strong>Product Hub:</strong> SKU-level sentiment and popularity<br>
+                        <strong>People Hub:</strong> Creator commercial lift (not follower count)<br>
+                        <strong>Media Hub:</strong> Outlet coverage and PR windows<br>
+                        <strong>Voice & Facts Hub:</strong> Sourced brand language and proof points<br>
+                        <strong>Messaging Hub:</strong> Probability-aware outreach variants<br>
+                        <strong>Modeling Hub:</strong> Calibrated predictions and LTV models</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>For RESTORE GTM: Real-World Impact</h4>
+                        <p><strong>Compresses Learning Curve:</strong> 12 months → 8 months of real-time optimization<br>
+                        <strong>Validates Messaging:</strong> Confirms more resonant messaging before major spend<br>
+                        <strong>Identifies Creators:</strong> Identifies the creators with 5-6:1 ROAS instead of guessing on macro influencers<br>
+                        <strong>Enables Pivots:</strong> Messaging shifts, cohort reallocation, creator doubling based on concrete data<br>
+                        <strong>Result:</strong> CAC reduction, improved subscriber acquisition year-over-year</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FINANCIALS SECTION -->
+        <div id="financials" class="section">
+            <div class="card">
+                <h2>Financial Model & Projections</h2>
+                
+                <h3>12-Month Cohort Forecast</h3>
+                <p style="margin-bottom: 1rem; color: var(--color-text-secondary);"><strong>Assumptions:</strong> $189/month subscription | 92% monthly retention | Acquisitions: Mo 1-2 (2K), Mo 3-5 (5K), Mo 6-12 (10K)</p>
+                
+                <table style="font-size: 0.85rem;">
+                    <thead>
+                        <tr>
+                            <th>Mo</th>
+                            <th>New</th>
+                            <th>Active</th>
+                            <th>Revenue</th>
+                            <th>EBITDA</th>
+                            <th>Margin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2,000</td>
+                            <td>2,000</td>
+                            <td>$378K</td>
+                            <td>$169K</td>
+                            <td>44.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2,000</td>
+                            <td>3,840</td>
+                            <td>$726K</td>
+                            <td>$325K</td>
+                            <td>44.8%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>5,000</td>
+                            <td>8,533</td>
+                            <td>$1.61M</td>
+                            <td>$806K</td>
+                            <td>50.0%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>5,000</td>
+                            <td>12,850</td>
+                            <td>$2.43M</td>
+                            <td>$1.32M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>5,000</td>
+                            <td>16,822</td>
+                            <td>$3.18M</td>
+                            <td>$1.73M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>10,000</td>
+                            <td>25,476</td>
+                            <td>$4.81M</td>
+                            <td>$2.61M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>10,000</td>
+                            <td>33,438</td>
+                            <td>$6.32M</td>
+                            <td>$3.43M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>10,000</td>
+                            <td>40,763</td>
+                            <td>$7.70M</td>
+                            <td>$4.18M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>10,000</td>
+                            <td>47,502</td>
+                            <td>$8.98M</td>
+                            <td>$4.87M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>10,000</td>
+                            <td>53,702</td>
+                            <td>$10.15M</td>
+                            <td>$5.51M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>10,000</td>
+                            <td>59,406</td>
+                            <td>$11.23M</td>
+                            <td>$6.10M</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>10,000</td>
+                            <td>64,653</td>
+                            <td>$12.22M</td>
+                            <td>$6.89M</td>
+                            <td>56.4%</td>
+                        </tr>
+                        <tr style="font-weight: 700; background: var(--color-bg-primary);">
+                            <td>Total</td>
+                            <td>87,000</td>
+                            <td>64,653</td>
+                            <td>$69.74M</td>
+                            <td>$37.95M</td>
+                            <td>54.4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Unit Economics</h3>
+                <div class="grid grid-4">
+                    <div class="metric-box">
+                        <div class="metric-label">COGS per Unit</div>
+                        <div class="metric-value">$5.43</div>
+                        <div class="metric-sub">At 10K scale</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Gross Margin</div>
+                        <div class="metric-value">97.1%</div>
+                        <div class="metric-sub">$183.57 per sub/mo</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Customer LTV</div>
+                        <div class="metric-value">$3,384</div>
+                        <div class="metric-sub">18-month avg lifetime</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Target CAC</div>
+                        <div class="metric-value">$285</div>
+                        <div class="metric-sub">11.9x LTV:CAC ratio</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">EBITDA Margin Expansion by Scale</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User Scale</th>
+                            <th>Monthly Revenue</th>
+                            <th>Monthly EBITDA</th>
+                            <th>EBITDA Margin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1,000 - 4,999</td>
+                            <td>$189K - $944K</td>
+                            <td>$85K - $472K</td>
+                            <td>44.8% - 50.0%</td>
+                        </tr>
+                        <tr>
+                            <td>5,000 - 9,999</td>
+                            <td>$945K - $1.89M</td>
+                            <td>$473K - $1.03M</td>
+                            <td>50.0% - 54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>10,000 - 49,999</td>
+                            <td>$1.89M - $9.45M</td>
+                            <td>$1.03M - $5.33M</td>
+                            <td>54.3% - 56.4%</td>
+                        </tr>
+                        <tr>
+                            <td>50,000+</td>
+                            <td>$9.45M+</td>
+                            <td>$5.33M+</td>
+                            <td>56.4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Key Financial Metrics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                            <th>Industry Benchmark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td><strong>97.1%</strong></td>
+                            <td>70-85% (typical DTC)</td>
+                        </tr>
+                        <tr>
+                            <td>EBITDA Margin (Year 1 avg)</td>
+                            <td><strong>54.4%</strong></td>
+                            <td>15-25% (subscription SaaS)</td>
+                        </tr>
+                        <tr>
+                            <td>LTV : CAC</td>
+                            <td><strong>11.9x</strong></td>
+                            <td>3x (acceptable), 5x+ (excellent)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EXECUTION SECTION - REMOVED -->
+        <div id="execution" class="section" style="display: none;">
+            <div class="card">
+                <h2>Go-To-Market Strategy</h2>
+                
+                <h3>Customer Acquisition Channels</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>1. Creator Partnerships (Primary)</h4>
+                        <p><strong>PrometheusAgentic People Hub</strong> identifies 50-100 micro-creators (10K-500K followers) with proven 15-30% sales lift for premium wellness products. Avoids macro-influencer waste ($50K-100K spend with low conversion).</p>
+                        <p><strong>CAC Target:</strong> $200-285 blended | <strong>ROAS:</strong> 5:1 validated</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>2. Paid Search & Social</h4>
+                        <p><strong>PrometheusAgentic Messaging Hub</strong> generates 4-6 message variants with calibrated reply probabilities. A/B testing optimizes creative across cohorts.</p>
+                        <p><strong>CAC Target:</strong> $250-350 | <strong>Platforms:</strong> Google, Meta, TikTok, Reddit (r/tressless)</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>3. PR & Media Outreach</h4>
+                        <p><strong>PrometheusAgentic Media Hub</strong> maps outlets by influence and category fit. Targets Men's Health, Wired wellness beats, TechCrunch (2-3x traffic vs trade pubs).</p>
+                        <p><strong>CAC Target:</strong> $150-250 (earned media lift) | <strong>Credibility:</strong> Clinical formulation + pharmaceutical manufacturing story</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>4. Dermatologist Partnerships</h4>
+                        <p>Direct outreach to 200+ dermatologists with revenue-share model. Highest LTV cohort ($4,200 per customer, 18-month retention).</p>
+                        <p><strong>CAC Target:</strong> $400 (9:1 ROAS justified by LTV)</p>
+                    </div>
+                </div>
+
+                <h3>12-Month Execution Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Months 1-2: Foundation</h4>
+                        <p><strong>Manufacturing:</strong> P-VF-CIJ Heavy build (10-14 weeks) + commission (4-5 months parallel track)<br>
+                        <strong>GTM:</strong> PrometheusAgentic deployment; initial creator outreach; brand site launch<br>
+                        <strong>Acquisitions:</strong> 2,000/month via early adopter waitlist + initial influencer seeding<br>
+                        <strong>Status:</strong> Revenue $378K-726K/month; break-even not yet reached</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 3-5: Ramp</h4>
+                        <p><strong>Manufacturing:</strong> VF-CIJ SAT complete; production batches at 16-20 L/min (Lite equivalent)<br>
+                        <strong>GTM:</strong> Paid search/social scaling; PR placements in Men's Health, Wired<br>
+                        <strong>Acquisitions:</strong> 5,000/month via creator partnerships + paid channels<br>
+                        <strong>Status:</strong> Revenue $1.61M-3.18M/month; approaching profitability</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 6-8: Scale & Profitability</h4>
+                        <p><strong>Manufacturing:</strong> Full Heavy capacity (40 L/min); MLOps advisory mode active<br>
+                        <strong>GTM:</strong> PrometheusAgentic closed-loop learning kicks in; CAC optimization begins<br>
+                        <strong>Acquisitions:</strong> 10,000/month sustained via optimized creator + paid mix<br>
+                        <strong>Milestone:</strong> Debt fully repaid Month 6 ($7.36M cumulative EBITDA); profitable operations</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 9-12: Optimization</h4>
+                        <p><strong>Manufacturing:</strong> MLOps guarded closed-loop; ↓50% diversions, tighter PDI/EE<br>
+                        <strong>GTM:</strong> CAC reduced 25-35% via calibrated messaging; creator ROAS optimization<br>
+                        <strong>Acquisitions:</strong> 10,000/month with improving unit economics<br>
+                        <strong>Status:</strong> Revenue $8.98M-12.22M/month; EBITDA margin 54-56%; debt-free</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Risk Mitigation</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Mitigation</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manufacturing delays</td>
+                            <td>VF-CIJ platform vendor-validated; 10-14 week build time confirmed; CDMO backup option</td>
+                            <td><span class="status-badge status-success">Mitigated</span></td>
+                        </tr>
+                        <tr>
+                            <td>CAC inflation</td>
+                            <td>PrometheusAgentic calibration reduces CAC 25-35% after 6 months; diversified channel mix</td>
+                            <td><span class="status-badge status-success">Managed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Retention below target</td>
+                            <td>92% retention validated in wellness subscription comps; multi-pathway formula improves efficacy</td>
+                            <td><span class="status-badge status-success">Conservative</span></td>
+                        </tr>
+                        <tr>
+                            <td>Competitive response</td>
+                            <td>VF-CIJ creates 2-3 year manufacturing barrier; PrometheusAgentic provides GTM agility</td>
+                            <td><span class="status-badge status-success">Durable moat</span></td>
+                        </tr>
+                        <tr>
+                            <td>Regulatory changes</td>
+                            <td>Cosmetic classification avoids prescription pathway; GMP-ready manufacturing for future pivot</td>
+                            <td><span class="status-badge status-success">Flexible</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Success Metrics (KPIs)</h3>
+                <div class="grid grid-3">
+                    <div class="metric-box">
+                        <div class="metric-label">Month 6 Target</div>
+                        <div class="metric-value">25,476</div>
+                        <div class="metric-sub">Active subscribers</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 Revenue</div>
+                        <div class="metric-value">$69.7M</div>
+                        <div class="metric-sub">Target achieved</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Debt-Free Operations</div>
+                        <div class="metric-value">Month 6</div>
+                        <div class="metric-sub">Full payoff</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">EBITDA Margin</div>
+                        <div class="metric-value">54.4%</div>
+                        <div class="metric-sub">Year 1 average</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">LTV : CAC</div>
+                        <div class="metric-value">11.9x</div>
+                        <div class="metric-sub">World-class</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Manufacturing Uptime</div>
+                        <div class="metric-value">99.5%</div>
+                        <div class="metric-sub">N+1 LRVP redundancy</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Why Pandora Wins</h2>
+                <div class="highlight-box">
+                    <p><strong>1. Proprietary Manufacturing Moat:</strong> VF-CIJ with MLOps creates 2-3 year barrier. Competitors using generic microfluidic or IJM cannot match our PDI, encapsulation efficiency, or COGS at scale.</p>
+                    <p><strong>2. AI-Powered GTM Efficiency:</strong> PrometheusAgentic delivers 25-35% CAC reduction via calibrated messaging, creator effectiveness scoring, and closed-loop learning. No competitor has this infrastructure.</p>
+                    <p><strong>3. Superior Unit Economics:</strong> 11.9x LTV:CAC, 97.1% gross margin, and 54.4% EBITDA margin beats industry benchmarks by 2-3x. Debt payoff in 6 months de-risks investor capital.</p>
+                    <p><strong>4. Clinical Differentiation:</strong> Nine-pathway formulation addresses root causes while competitors offer single-ingredient solutions. Cosmetic classification avoids prescription side effects.</p>
+                    <p><strong>5. Subscription Compounding:</strong> Recurring revenue model generates 4x higher annual EBITDA than one-time retail. 92% retention creates durable cash flows.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active state from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Add active state to clicked tab
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
