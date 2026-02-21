@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandora Therapeutics - RESTORE Business Plan</title>
+    <style>
+        @font-face {
+            font-family: 'PT Gambarino';
+            src: url('assets/fonts/Gambarino-Regular.otf') format('opentype');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayRomanItalic.ttf') format('truetype');
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayMediumItalic.ttf') format('truetype');
+            font-style: italic;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PT Neue Haas';
+            src: url('assets/fonts/NeueHaasDisplayBoldItalic.ttf') format('truetype');
+            font-style: italic;
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        :root {
+            --pt-turquoise-100: #99cccd;
+            --pt-turquoise-200: #66b3b4;
+            --pt-turquoise-300: #339a9c;
+            --pt-turquoise-400: #006668;
+            --pt-turquoise-500: #004d4e;
+            --pt-turquoise-600: #003233;
+            --pt-purple-100: #b3a4ae;
+            --pt-purple-200: #8c7787;
+            --pt-purple-300: #664a5f;
+            --pt-purple-400: #401d37;
+            --pt-yellow: #f8bb37;
+            --pt-white: #faf8f2;
+            --pt-black: #0d0d0d;
+
+            --color-bg-primary: var(--pt-black);
+            --color-bg-secondary: var(--pt-turquoise-600);
+            --color-bg-elevated: var(--pt-turquoise-500);
+            --color-accent: var(--pt-turquoise-100);
+            --color-accent-hover: var(--pt-turquoise-200);
+            --color-accent-bright: var(--pt-turquoise-300);
+            --color-text-primary: var(--pt-white);
+            --color-text-secondary: var(--pt-purple-100);
+            --color-highlight: var(--pt-yellow);
+            --color-border: rgba(153, 204, 205, 0.25);
+            --color-success: #39c98d;
+            --color-warning: #f8bb37;
+            --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.25);
+            --radius-lg: 14px;
+            --radius-md: 10px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'PT Neue Haas', 'Helvetica Neue', Arial, sans-serif;
+            background: radial-gradient(circle at 10% 0%, #123335 0%, var(--color-bg-primary) 46%);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'PT Gambarino', Georgia, serif;
+            letter-spacing: 0.01em;
+        }
+
+        button,
+        [role="button"] {
+            cursor: pointer;
+        }
+
+        button:disabled,
+        [aria-disabled="true"] {
+            cursor: not-allowed;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--color-highlight);
+            outline-offset: 2px;
+        }
+
+        .is-hidden {
+            display: none !important;
+        }
+
+        #launch-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(180deg, rgba(0, 50, 51, 0.4) 0%, rgba(13, 13, 13, 0.82) 60%),
+                url('assets/images/pt-texture-01.jpg') center/cover no-repeat;
+            transition: opacity 320ms ease, visibility 320ms ease;
+        }
+
+        #launch-screen.is-exiting {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .launch-card {
+            width: min(92vw, 960px);
+            padding: clamp(1.5rem, 3.2vw, 3rem);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(13, 13, 13, 0.75), rgba(0, 50, 51, 0.75));
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-elevated);
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .launch-logo {
+            width: min(84vw, 560px);
+            max-height: 320px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(1.15);
+            margin: 0 auto 1.4rem;
+        }
+
+        .launch-title {
+            margin-bottom: 0.4rem;
+            color: var(--pt-white);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        .launch-subtitle {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.3rem;
+        }
+
+        .launch-enter-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 220px;
+            border: 1px solid var(--pt-turquoise-200);
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--pt-turquoise-300), var(--pt-turquoise-200));
+            color: var(--pt-black);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.85rem 1.5rem;
+            transition: transform 180ms ease, filter 180ms ease;
+        }
+
+        .launch-enter-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+        }
+
+        #secret-edit-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 4px;
+            background: var(--color-bg-primary);
+            color: transparent;
+            opacity: 0;
+            z-index: 1200;
+        }
+
+        #secret-edit-btn:hover,
+        #secret-edit-btn:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .admin-panel {
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            background: rgba(13, 13, 13, 0.9);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .admin-panel[hidden],
+        .admin-only[hidden] {
+            display: none !important;
+        }
+
+        .admin-pill {
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 0.45rem 0.9rem;
+            background: var(--pt-turquoise-600);
+            color: var(--pt-turquoise-100);
+            font-size: 0.8rem;
+        }
+
+        .admin-btn {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--pt-turquoise-500);
+            color: var(--pt-white);
+            padding: 0.5rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .admin-btn:hover {
+            background: var(--pt-turquoise-400);
+        }
+
+        #admin-toast {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1300;
+            background: rgba(64, 29, 55, 0.95);
+            border: 1px solid rgba(179, 164, 174, 0.55);
+            color: var(--pt-white);
+            border-radius: var(--radius-sm);
+            padding: 0.55rem 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #112022 0%, #0b1718 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company-title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .company-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .company-title p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            color: var(--color-text-secondary);
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: var(--color-bg-elevated);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .nav-tab.active {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .section[hidden] {
+            display: none !important;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(0, 50, 51, 0.9), rgba(0, 27, 28, 0.92));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .card h2 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .metric-box {
+            background: rgba(0, 77, 78, 0.65);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.045em;
+        }
+
+        .metric-value {
+            font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1.2;
+        }
+
+        .metric-sub {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: rgba(0, 77, 78, 0.7);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: middle;
+        }
+
+        th {
+            background: rgba(13, 13, 13, 0.95);
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        td {
+            color: var(--color-text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 179, 180, 0.18) 0%, rgba(51, 154, 156, 0.06) 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: var(--radius-sm);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: rgba(0, 77, 78, 0.6);
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .tech-item h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-item p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: rgba(57, 201, 141, 0.18);
+            color: var(--color-success);
+        }
+
+        .status-warning {
+            background: rgba(248, 187, 55, 0.2);
+            color: var(--color-warning);
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: -1.7rem;
+            top: 12px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background: var(--color-border);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .timeline-item h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .assumptions-summary {
+            margin-bottom: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .metric-box label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        .fin-input {
+            width: 100%;
+            margin-top: 0.35rem;
+            padding: 0.5rem 0.6rem;
+            border-radius: 6px;
+            border: 1px solid var(--color-border);
+            background: rgba(13, 13, 13, 0.65);
+            color: var(--color-text-primary);
+            font-family: 'PT Neue Haas', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.88rem;
+        }
+
+        .fin-input:disabled {
+            opacity: 0.85;
+            background: rgba(13, 13, 13, 0.42);
+            border-color: transparent;
+        }
+
+        .scenario-input,
+        .forecast-input {
+            width: 100%;
+            min-width: 82px;
+            text-align: right;
+        }
+
+        .scenario-output,
+        .forecast-output {
+            display: inline-block;
+            min-width: 82px;
+            text-align: right;
+            color: var(--color-text-primary);
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .scenario-card {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: linear-gradient(180deg, rgba(0, 50, 51, 0.7), rgba(0, 27, 28, 0.8));
+            padding: 0.85rem;
+        }
+
+        .scenario-card h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.55rem;
+            font-size: 1rem;
+        }
+
+        .scenario-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+
+        .scenario-table td {
+            padding: 0.4rem 0.35rem;
+            border-bottom: 1px solid rgba(153, 204, 205, 0.14);
+            vertical-align: middle;
+        }
+
+        .scenario-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scenario-table td:first-child {
+            color: var(--color-text-secondary);
+            width: 55%;
+        }
+
+        .scenario-table td:last-child {
+            text-align: right;
+            width: 45%;
+        }
+
+        .scenario-table .scenario-derived td {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        .markdown-model-section {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .model-summary {
+            color: var(--color-text-secondary);
+        }
+
+        .model-assumptions {
+            margin-top: 0.65rem;
+            margin-left: 1.1rem;
+        }
+
+        .model-assumptions li {
+            color: var(--color-text-secondary);
+            margin-bottom: 0.35rem;
+        }
+
+        .model-anchor-table {
+            margin-top: 0.65rem;
+            font-size: 0.84rem;
+        }
+
+        .cost-breakdown-table th:nth-child(2),
+        .cost-breakdown-table th:nth-child(3),
+        .cost-breakdown-table td:nth-child(2),
+        .cost-breakdown-table td:nth-child(3) {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .cost-breakdown-table .line-strong td {
+            color: var(--color-text-primary);
+            font-weight: 700;
+        }
+
+        .cost-breakdown-footnote {
+            margin-top: 0.75rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .total-row td {
+            font-weight: 700;
+            background: rgba(13, 13, 13, 0.88);
+            color: var(--color-text-primary);
+        }
+
+        .editable-active {
+            border-radius: 4px;
+            box-shadow: inset 0 0 0 1px rgba(248, 187, 55, 0.45);
+            background: rgba(248, 187, 55, 0.07);
+            transition: box-shadow 120ms ease;
+        }
+
+        @media (max-width: 1024px) {
+            .admin-panel {
+                max-width: calc(100vw - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-tabs {
+                width: 100%;
+            }
+
+            .nav-tab {
+                flex: 1;
+                text-align: center;
+                padding: 0.55rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .company-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *:before, *:after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="secret-edit-btn" type="button" aria-label="Open edit mode">.</button>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+        <span class="admin-pill">Edit Mode</span>
+        <button id="admin-save-btn" type="button" class="admin-btn">Save</button>
+        <button id="admin-cancel-btn" type="button" class="admin-btn">Cancel</button>
+        <button id="admin-reset-btn" type="button" class="admin-btn">Reset All</button>
+        <button id="admin-exit-btn" type="button" class="admin-btn">Exit</button>
+    </div>
+    <div id="admin-toast" hidden></div>
+
+    <div id="launch-screen" aria-labelledby="launch-title" role="region">
+        <div class="launch-card">
+            <img class="launch-logo" src="assets/images/logo-primary.jpg" alt="Pandora Therapeutics logo">
+            <h2 id="launch-title" class="launch-title">Pandora Therapeutics</h2>
+            <p class="launch-subtitle">RESTORE Business Plan 2026</p>
+            <button id="enter-app-btn" type="button" class="launch-enter-btn">Enter Business Plan</button>
+        </div>
+    </div>
+
+    <div id="app-shell" class="is-hidden" aria-hidden="true">
+    <div class="header">
+        <div class="header-content">
+            <div class="company-title">
+                <h1>Pandora Therapeutics</h1>
+                <p>RESTORE™ Hair Restoration System | Business Plan 2026</p>
+            </div>
+            <div class="nav-tabs">
+                <button type="button" class="nav-tab active" data-section="overview">Overview</button>
+                <button type="button" class="nav-tab" data-section="product">Product</button>
+                <button type="button" class="nav-tab" data-section="technology">Technology</button>
+                <button type="button" class="nav-tab" data-section="financials">Financials</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- OVERVIEW SECTION -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <h2>Executive Summary</h2>
+                <div class="highlight-box">
+                    <p><strong>Pandora Therapeutics</strong> is a pharmaceutical manufacturing company producing RESTORE™, a science-backed topical regeneration therapy for hair growth and tissue repair. RESTORE operates on a stress-free regeneration principle: delivering 14 bioactive molecules via Hybrid Cooperative Complex Hyalurosomes (HCC-HA) in a 6-night-on, 1-night-off protocol that maintains tissue at 50-70% therapeutic saturation—the zone where continuous healing occurs without triggering adaptive shut-down.</p>
+                    <p style="margin-top: 1rem;">We combine proprietary VF-CIJ manufacturing (continuous-flow liposomal production with inline ethanol removal) and AI-driven go-to-market intelligence (PrometheusAgentic) to deliver sustained profitability and category innovation in the $26.7B global hair restoration market.</p>
+                </div>
+
+                <div class="grid grid-4" style="margin-top: 2rem;">
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 Revenue</div>
+                        <div class="metric-value">$69.7M</div>
+                        <div class="metric-sub">64,653 subscribers</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 EBITDA</div>
+                        <div class="metric-value">$37.9M</div>
+                        <div class="metric-sub">54.4% margin</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">COGS per Unit</div>
+                        <div class="metric-value">$5.43</div>
+                        <div class="metric-sub">97.1% gross margin</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">LTV : CAC</div>
+                        <div class="metric-value">11.9x</div>
+                        <div class="metric-sub">World-class unit economics</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-top: 1.5rem;">
+                    <div class="metric-box">
+                        <div class="metric-label">Global Market (2026)</div>
+                        <div class="metric-value">$26.7B</div>
+                        <div class="metric-sub">Growing 16.6% CAGR</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Liposomal Cosmetics</div>
+                        <div class="metric-value">$2.5B</div>
+                        <div class="metric-sub">8.5% CAGR (hair care emerging)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Competitive Pricing</div>
+                        <div class="metric-value">$189/mo</div>
+                        <div class="metric-sub">vs. $16-60 (Hims, Keeps)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Competitive Advantages</h2>
+                <div class="grid grid-2">
+                    <div class="tech-item">
+                        <h4>1. Proprietary VF-CIJ Manufacturing</h4>
+                        <p>Continuous-flow system for lipid nanoparticle production. Rapid mixing (milliseconds) causes lipids to self-assemble into nano-sized particles. Inline vacuum flash evaporation removes 70-90% ethanol immediately, cutting downstream processing costs. Ethanol recycled (80% waste reduction). Produces 4.8M liters/year at 50 L/min nameplate. Creates 2-3 year barrier to entry—no competitor matches this throughput with inline solvent removal.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>2. MLOps Smart Autopilot</h4>
+                        <p>Machine learning layer monitors real-time sensors (Raman, refractive index, conductivity, temperature, flow, vacuum pressure) to predict particle size, uniformity, encapsulation efficiency before lab confirmation. Makes small adjustments to keep product centered in quality target. Learns from every batch, suggesting improved conditions for next run. Faster startup (2+ minutes saved), fewer rejections (diversions cut 50%), tighter consistency, lower costs. FDA-compliant logging (21 CFR Part 11).</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>3. PrometheusAgentic GTM Intelligence</h4>
+                        <p>Seven-hub platform answers: who to focus on, why now, what to say. Builds "mosaic" of independent signals (search trends, reviews, press, sales, influencer activity) each tagged with source, confidence, recency. Identifies 20 micro-creators with 5-6:1 ROAS instead of guessing on macro influencers. Validates messaging 40% more resonant before major spend. Compresses 12-month learning curve into 8 months. Cuts CAC 25-35% via closed-loop recalibration.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>4. Science-Backed Tissue-First Model</h4>
+                        <p>14 actives in HCC hyalurosomes target structural repair (collagen synthesis), protection (antioxidant defense), energy metabolism (ATP production), and perfusion (blood flow). Maintains 50-70% tissue saturation for continuous regeneration without plateau. 6-on/1-off protocol prevents receptor desensitization. Sustained efficacy over months, not weeks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Market Opportunity &amp; Timing (2026)</h3>
+                <div class="grid grid-2">
+                    <div class="tech-item">
+                        <h4>Market Scale &amp; Growth</h4>
+                        <p>Global hair restoration: $6.46B (2023) → $18.9B (2030), 16.6% CAGR. Hair regrowth treatments alone: $7.8B (2025) → $16.9B (2035). U.S. maintains 21% global share driven by telehealth adoption and subscription models. 4.3M procedures performed globally in 2024.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Liposomal Technology Convergence</h4>
+                        <p>Liposomal cosmetics: $2.5B market growing 8.5% CAGR. Hair care emerging as high-growth application with biotin, keratin, and nutrient delivery to follicles. VF-CIJ manufacturing creates defensible position as market transitions from generic to advanced delivery systems.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Competitive Fragmentation</h4>
+                        <p>Budget tier ($16-60/mo): GoodRx ($16), Hims ($15-60), Keeps ($33-60)—mass market DTC with generic Rx. Premium tier ($130-180/3mo): Multi-ingredient bundles. Ultra-premium tier (RESTORE): Uncontested space for proprietary liposomal multi-pathway systems.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Regulatory &amp; Consumer Trends</h4>
+                        <p>Shift toward non-Rx cosmetic solutions avoiding sexual dysfunction side effects (finasteride). Rising demand for natural, organic, multi-pathway products. E-commerce and social media driving specialty serum adoption. Subscription models proven with 92% retention rates feasible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SECTION -->
+        <div id="product" class="section">
+            <div class="card">
+                <h2>RESTORE™ Product Overview</h2>
+                <p>RESTORE is a topical regeneration therapy delivering 14 bioactive molecules via Hybrid Cooperative Complex Hyalurosomes (HCC-HA). Applied 6 nights per week with 1 rest day, it maintains tissue at 50-70% therapeutic saturation for continuous healing without adaptive shutdown.</p>
+
+                <h3>The Four Pillars of Regeneration</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>Pillar 1: Structural Repair</h4>
+                        <p><strong>Actives:</strong> L-Ascorbic Acid (3.0% w/v), Ferulic Acid (0.125%), CoQ10 (0.075%), α-Tocopherol, Hyaluronic Acid Complex (2.0%)<br>
+                        <strong>Function:</strong> Support collagen and elastin synthesis, provide fibroblast energy, stabilize structural proteins<br>
+                        <strong>Outcome:</strong> 30-40% increase in dermal collagen density, improved skin elasticity, denser dermis creates supportive follicle niche</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 2: Protection (Antioxidant Defense)</h4>
+                        <p><strong>Actives:</strong> Melatonin (0.025%), Luteolin (0.005%), Reduced Glutathione (0.075%), EUK-134 (0.01%), Phytic Acid (0.20%)<br>
+                        <strong>Function:</strong> Neutralize ROS at multiple levels, suppress inflammation, prevent ferroptosis, modulate senescence<br>
+                        <strong>Outcome:</strong> 50-70% reduction in oxidative stress markers, preserved hair matrix cell viability, extended anagen phase 15-30%</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 3: Energy Metabolism</h4>
+                        <p><strong>Actives:</strong> Creatine (0.25%), L-Carnitine L-Tartrate (0.375%), Adenosine (0.1875%), Inositol (0.0675%)<br>
+                        <strong>Function:</strong> Enhance mitochondrial ATP production, improve fatty acid oxidation, support calcium signaling<br>
+                        <strong>Outcome:</strong> 40-60% improvement in fibroblast/keratinocyte energy status, enhanced cellular proliferation, sustained mitochondrial function</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Pillar 4: Perfusion &amp; Angiogenesis</h4>
+                        <p><strong>Actives:</strong> L-Citrulline (0.75%), Adenosine (dual role)<br>
+                        <strong>Function:</strong> Increase nitric oxide production, activate vascular growth factors, promote capillary formation<br>
+                        <strong>Outcome:</strong> 20-40% improvement in dermal blood flow, new capillary formation in ischemic areas, prevents hypoxia-triggered catagen</p>
+                    </div>
+                </div>
+
+                <h3>HCC Hyalurosome Delivery Technology</h3>
+                <div class="grid grid-2">
+                    <div class="metric-box">
+                        <div class="metric-label">Particle Size</div>
+                        <div class="metric-value">150-200nm</div>
+                        <div class="metric-sub">Nano-delivery vehicles</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Tissue Residence Time</div>
+                        <div class="metric-value">28-35 days</div>
+                        <div class="metric-sub">3.5-5× longer than standard</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Collagen Synthesis Boost</div>
+                        <div class="metric-value">7-12%</div>
+                        <div class="metric-sub">vs free actives or standard liposomes</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Shelf Stability</div>
+                        <div class="metric-value">6 months</div>
+                        <div class="metric-sub">No harsh preservatives needed</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 1rem;">
+                    <p><strong>HCC Advantage:</strong> Dual molecular weight hyaluronic acid (50% low-MW for penetration, 50% high-MW for depot retention) creates hydrogen-bonded cooperative network. Protects actives from oxidation, guides delivery via CD44 receptors, enables sustained release over weeks. Natural stabilization without surfactants or chelating agents.</p>
+                </div>
+
+                <h3>Clinical Timeline: What to Expect</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Week 1-2: Establishment</h4>
+                        <p>Hyalurosomes distribute throughout dermis, receptors engage fully, tissue energy improves. First subjective reports: improved scalp feel, reduced dryness, less redness.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 3-4: Tissue Response</h4>
+                        <p>Collagen synthesis visible in dermis (skin texture improves), hair follicle matrix cells fully engaged in anagen, scalp inflammation declining, skin radiance increases.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 5-8: Compounding Effects</h4>
+                        <p>Vascular density increasing (scalp perfusion improved), hair shaft diameter increasing (thicker, stronger hair), collagen deposition accelerating, fine lines significantly reduced.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Week 8-12: Meaningful Change</h4>
+                        <p>Hair density beginning to increase (new follicles shifted to anagen), shedding reduced 40-50%, skin texture/elasticity/hydration substantially improved, sustained improvement without plateau.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Month 4-6: Continued Compounding</h4>
+                        <p>Hair regrowth obvious (hairline, crown, previously thinning areas), 40-60% improvement in objective hair count, skin appears 5-10 years younger, efficacy continues improving—no plateau observed.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 1rem;">
+                    <p><strong>Why RESTORE Doesn't Plateau:</strong> Traditional treatments hit ceiling at 20-30% improvement because they address one bottleneck. RESTORE's tissue-first approach addresses all five dimensions simultaneously (follicle energy, perfusion, oxidative stress, inflammation, dermal structure), delivering sustained improvement without diminishing returns.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECHNOLOGY SECTION -->
+        <div id="technology" class="section">
+            <div class="card">
+                <h2>Technology Stack</h2>
+                <p>Pandora's competitive moat is built on two validated platforms: VF-CIJ manufacturing and PrometheusAgentic GTM intelligence.</p>
+
+                <h3>1. VF-CIJ Manufacturing Platform</h3>
+                <div class="highlight-box">
+                    <p><strong>Pandora VF-CIJ</strong> is a continuous-flow manufacturing system for lipid nanoparticles. It rapidly mixes lipids dissolved in ethanol with aqueous buffer in milliseconds using high-velocity jets, causing self-assembly into nano-sized particles. Immediately after mixing, inline vacuum flash evaporation removes 70-90% of ethanol at low pressure. Evaporated ethanol is condensed, purified through molecular sieves, and recycled—cutting solvent waste by 80% compared to traditional methods.</p>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>How It Works</h4>
+                        <p><strong>Step 1: Rapid Mixing</strong> – High-velocity jets create millisecond contact between lipid and aqueous streams, triggering nano-assembly<br>
+                        <strong>Step 2: Inline Solvent Removal</strong> – Vacuum flash evaporation (100-200 mbar, 30-42°C) removes most ethanol in seconds, not hours<br>
+                        <strong>Step 3: Ethanol Recovery</strong> – Two-stage condensation captures ≥99.5% vapor; molecular sieve purifies for reuse<br>
+                        <strong>Result:</strong> Drastically reduced downstream processing time and costs. 4.8M liters/year capacity at 50 L/min nameplate.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>MLOps: Smart Autopilot for Manufacturing</h4>
+                        <p><strong>Real-Time Monitoring:</strong> Sensors track Raman spectroscopy, refractive index, conductivity, temperature, flow rates, vacuum pressure<br>
+                        <strong>Quality Prediction:</strong> Predicts particle size, uniformity, encapsulation efficiency before lab tests confirm them<br>
+                        <strong>Adaptive Adjustments:</strong> When confident, makes small, safe changes to inlet temps or vacuum pressure to keep product centered in quality target<br>
+                        <strong>Learning:</strong> After each batch, updates understanding of how lipid formulations behave and suggests improved starting conditions<br>
+                        <strong>Result:</strong> Faster startup (2+ min saved/batch), fewer rejections (diversions cut 50%), tighter consistency, lower costs. FDA-compliant logging (21 CFR Part 11).</p>
+                    </div>
+                </div>
+
+                <h3>2. PrometheusAgentic GTM Platform</h3>
+                <div class="highlight-box">
+                    <p><strong>PrometheusAgentic</strong> is a go-to-market and market intelligence platform answering three questions: who to focus on, why now, and what to say. Instead of relying on expensive data feeds, it builds a "mosaic" of independent signals—search trends, reviews, press, sales data, influencer activity—each tagged with source, confidence, and recency. When signals agree, confidence rises; when they conflict, the system surfaces disagreement rather than hiding it.</p>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>Seven-Hub Architecture</h4>
+                        <p><strong>Company Hub:</strong> Ranked accounts with "why now" drivers<br>
+                        <strong>Product Hub:</strong> SKU-level sentiment and popularity<br>
+                        <strong>People Hub:</strong> Creator commercial lift (not follower count)<br>
+                        <strong>Media Hub:</strong> Outlet coverage and PR windows<br>
+                        <strong>Voice &amp; Facts Hub:</strong> Sourced brand language and proof points<br>
+                        <strong>Messaging Hub:</strong> Probability-aware outreach variants<br>
+                        <strong>Modeling Hub:</strong> Calibrated predictions and LTV models</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>For RESTORE GTM: Real-World Impact</h4>
+                        <p><strong>Compresses Learning Curve:</strong> 12 months → 8 months of real-time optimization<br>
+                        <strong>Validates Messaging:</strong> Confirms more resonant messaging before major spend<br>
+                        <strong>Identifies Creators:</strong> Identifies the creators with 5-6:1 ROAS instead of guessing on macro influencers<br>
+                        <strong>Enables Pivots:</strong> Messaging shifts, cohort reallocation, creator doubling based on concrete data<br>
+                        <strong>Result:</strong> CAC reduction, improved subscriber acquisition year-over-year</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FINANCIALS SECTION -->
+        <div id="financials" class="section">
+            <div class="card">
+                <h2>Financial Model &amp; Projections</h2>
+
+                <h3>Financial Scenarios</h3>
+                <p class="assumptions-summary">10 editable scenarios driven by markdown anchor assumptions. Unlock edit mode with your hidden passcode button to modify inputs and save.</p>
+                <div id="scenario-grid" class="scenario-grid"></div>
+
+                <h3 style="margin-top: 2rem;">Model Reference (From Restore Financial Model)</h3>
+                <div class="markdown-model-section">
+                    <p id="model-summary" class="model-summary"></p>
+
+                    <h4 style="margin-top: 1rem;">Key Assumptions</h4>
+                    <ul id="model-assumptions" class="model-assumptions"></ul>
+
+                    <h4 style="margin-top: 1rem;">Tier Anchors</h4>
+                    <table class="model-anchor-table">
+                        <thead>
+                            <tr>
+                                <th>Active Subs</th>
+                                <th>Monthly COGS</th>
+                                <th>COGS / Unit</th>
+                                <th>EBITDA Margin</th>
+                            </tr>
+                        </thead>
+                        <tbody id="model-anchor-body"></tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Full Cost Breakdown (10,000 Active Users)</h3>
+                <div class="markdown-model-section">
+                    <p class="model-summary">Conservative DTC view from the Restore Financial model.</p>
+                    <table class="cost-breakdown-table">
+                        <thead>
+                            <tr>
+                                <th>Line Item</th>
+                                <th>Amount</th>
+                                <th>% of Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="line-strong">
+                                <td>Revenue</td>
+                                <td>$1,890,000</td>
+                                <td>100.0%</td>
+                            </tr>
+                            <tr class="line-strong">
+                                <td>COGS</td>
+                                <td>$121,400</td>
+                                <td>6.4%</td>
+                            </tr>
+                            <tr class="line-strong">
+                                <td>Gross Profit</td>
+                                <td>$1,768,600</td>
+                                <td>93.6%</td>
+                            </tr>
+                            <tr>
+                                <td>Variable fulfillment/shipping</td>
+                                <td>$19,500</td>
+                                <td>1.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Payment processing (2.8% avg)</td>
+                                <td>$53,000</td>
+                                <td>2.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Returns/refunds (5% of revenue)</td>
+                                <td>$94,500</td>
+                                <td>5.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Chargebacks/fraud (0.6%)</td>
+                                <td>$11,340</td>
+                                <td>0.6%</td>
+                            </tr>
+                            <tr>
+                                <td>Subscription platform fees (~0.75%)</td>
+                                <td>$14,175</td>
+                                <td>0.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Customer support labor</td>
+                                <td>$18,000</td>
+                                <td>1.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Fixed manufacturing overhead</td>
+                                <td>$38,825</td>
+                                <td>2.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Equipment depreciation ($3M / 60 mo)</td>
+                                <td>$50,000</td>
+                                <td>2.6%</td>
+                            </tr>
+                            <tr>
+                                <td>G&amp;A (exec, insurance, legal, IT, office + claims)</td>
+                                <td>$57,000</td>
+                                <td>3.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Marketing labor + PrometheusAgentic</td>
+                                <td>$25,000</td>
+                                <td>1.3%</td>
+                            </tr>
+                            <tr>
+                                <td>Acquisition marketing (churn replacement @ $300 CAC)</td>
+                                <td>$240,000</td>
+                                <td>12.7%</td>
+                            </tr>
+                            <tr>
+                                <td>Brand/ongoing marketing (SEO, email, PR, loyalty, Klaviyo)</td>
+                                <td>$50,000</td>
+                                <td>2.6%</td>
+                            </tr>
+                            <tr>
+                                <td>Stability/clinical/testing/insurance</td>
+                                <td>$15,000</td>
+                                <td>0.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Analytics/CRM tools + misc</td>
+                                <td>$8,000</td>
+                                <td>0.4%</td>
+                            </tr>
+                            <tr>
+                                <td>Inventory holding/obsolescence</td>
+                                <td>$18,000</td>
+                                <td>1.0%</td>
+                            </tr>
+                            <tr class="line-strong">
+                                <td>Total Operating Expenses</td>
+                                <td>$623,057</td>
+                                <td>33.0%</td>
+                            </tr>
+                            <tr class="line-strong">
+                                <td>EBITDA</td>
+                                <td>$1,145,543</td>
+                                <td>60.6%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="cost-breakdown-footnote"><strong>Monthly break-even (full conservative model):</strong> ~12,400 subscribers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXECUTION SECTION - REMOVED -->
+        <div id="execution" class="section" hidden aria-hidden="true">
+            <div class="card">
+                <h2>Go-To-Market Strategy</h2>
+                
+                <h3>Customer Acquisition Channels</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>1. Creator Partnerships (Primary)</h4>
+                        <p><strong>PrometheusAgentic People Hub</strong> identifies 50-100 micro-creators (10K-500K followers) with proven 15-30% sales lift for premium wellness products. Avoids macro-influencer waste ($50K-100K spend with low conversion).</p>
+                        <p><strong>CAC Target:</strong> $200-285 blended | <strong>ROAS:</strong> 5:1 validated</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>2. Paid Search &amp; Social</h4>
+                        <p><strong>PrometheusAgentic Messaging Hub</strong> generates 4-6 message variants with calibrated reply probabilities. A/B testing optimizes creative across cohorts.</p>
+                        <p><strong>CAC Target:</strong> $250-350 | <strong>Platforms:</strong> Google, Meta, TikTok, Reddit (r/tressless)</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>3. PR &amp; Media Outreach</h4>
+                        <p><strong>PrometheusAgentic Media Hub</strong> maps outlets by influence and category fit. Targets Men's Health, Wired wellness beats, TechCrunch (2-3x traffic vs trade pubs).</p>
+                        <p><strong>CAC Target:</strong> $150-250 (earned media lift) | <strong>Credibility:</strong> Clinical formulation + pharmaceutical manufacturing story</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>4. Dermatologist Partnerships</h4>
+                        <p>Direct outreach to 200+ dermatologists with revenue-share model. Highest LTV cohort ($4,200 per customer, 18-month retention).</p>
+                        <p><strong>CAC Target:</strong> $400 (9:1 ROAS justified by LTV)</p>
+                    </div>
+                </div>
+
+                <h3>12-Month Execution Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Months 1-2: Foundation</h4>
+                        <p><strong>Manufacturing:</strong> P-VF-CIJ Heavy build (10-14 weeks) + commission (4-5 months parallel track)<br>
+                        <strong>GTM:</strong> PrometheusAgentic deployment; initial creator outreach; brand site launch<br>
+                        <strong>Acquisitions:</strong> 2,000/month via early adopter waitlist + initial influencer seeding<br>
+                        <strong>Status:</strong> Revenue $378K-726K/month; break-even not yet reached</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 3-5: Ramp</h4>
+                        <p><strong>Manufacturing:</strong> VF-CIJ SAT complete; production batches at 16-20 L/min (Lite equivalent)<br>
+                        <strong>GTM:</strong> Paid search/social scaling; PR placements in Men's Health, Wired<br>
+                        <strong>Acquisitions:</strong> 5,000/month via creator partnerships + paid channels<br>
+                        <strong>Status:</strong> Revenue $1.61M-3.18M/month; approaching profitability</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 6-8: Scale &amp; Profitability</h4>
+                        <p><strong>Manufacturing:</strong> Full Heavy capacity (40 L/min); MLOps advisory mode active<br>
+                        <strong>GTM:</strong> PrometheusAgentic closed-loop learning kicks in; CAC optimization begins<br>
+                        <strong>Acquisitions:</strong> 10,000/month sustained via optimized creator + paid mix<br>
+                        <strong>Milestone:</strong> Debt fully repaid Month 6 ($7.36M cumulative EBITDA); profitable operations</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Months 9-12: Optimization</h4>
+                        <p><strong>Manufacturing:</strong> MLOps guarded closed-loop; ↓50% diversions, tighter PDI/EE<br>
+                        <strong>GTM:</strong> CAC reduced 25-35% via calibrated messaging; creator ROAS optimization<br>
+                        <strong>Acquisitions:</strong> 10,000/month with improving unit economics<br>
+                        <strong>Status:</strong> Revenue $8.98M-12.22M/month; EBITDA margin 54-56%; debt-free</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Risk Mitigation</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Mitigation</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manufacturing delays</td>
+                            <td>VF-CIJ platform vendor-validated; 10-14 week build time confirmed; CDMO backup option</td>
+                            <td><span class="status-badge status-success">Mitigated</span></td>
+                        </tr>
+                        <tr>
+                            <td>CAC inflation</td>
+                            <td>PrometheusAgentic calibration reduces CAC 25-35% after 6 months; diversified channel mix</td>
+                            <td><span class="status-badge status-success">Managed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Retention below target</td>
+                            <td>92% retention validated in wellness subscription comps; multi-pathway formula improves efficacy</td>
+                            <td><span class="status-badge status-success">Conservative</span></td>
+                        </tr>
+                        <tr>
+                            <td>Competitive response</td>
+                            <td>VF-CIJ creates 2-3 year manufacturing barrier; PrometheusAgentic provides GTM agility</td>
+                            <td><span class="status-badge status-success">Durable moat</span></td>
+                        </tr>
+                        <tr>
+                            <td>Regulatory changes</td>
+                            <td>Cosmetic classification avoids prescription pathway; GMP-ready manufacturing for future pivot</td>
+                            <td><span class="status-badge status-success">Flexible</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Success Metrics (KPIs)</h3>
+                <div class="grid grid-3">
+                    <div class="metric-box">
+                        <div class="metric-label">Month 6 Target</div>
+                        <div class="metric-value">25,476</div>
+                        <div class="metric-sub">Active subscribers</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Year 1 Revenue</div>
+                        <div class="metric-value">$69.7M</div>
+                        <div class="metric-sub">Target achieved</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Debt-Free Operations</div>
+                        <div class="metric-value">Month 6</div>
+                        <div class="metric-sub">Full payoff</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">EBITDA Margin</div>
+                        <div class="metric-value">54.4%</div>
+                        <div class="metric-sub">Year 1 average</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">LTV : CAC</div>
+                        <div class="metric-value">11.9x</div>
+                        <div class="metric-sub">World-class</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Manufacturing Uptime</div>
+                        <div class="metric-value">99.5%</div>
+                        <div class="metric-sub">N+1 LRVP redundancy</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Why Pandora Wins</h2>
+                <div class="highlight-box">
+                    <p><strong>1. Proprietary Manufacturing Moat:</strong> VF-CIJ with MLOps creates 2-3 year barrier. Competitors using generic microfluidic or IJM cannot match our PDI, encapsulation efficiency, or COGS at scale.</p>
+                    <p><strong>2. AI-Powered GTM Efficiency:</strong> PrometheusAgentic delivers 25-35% CAC reduction via calibrated messaging, creator effectiveness scoring, and closed-loop learning. No competitor has this infrastructure.</p>
+                    <p><strong>3. Superior Unit Economics:</strong> 11.9x LTV:CAC, 97.1% gross margin, and 54.4% EBITDA margin beats industry benchmarks by 2-3x. Debt payoff in 6 months de-risks investor capital.</p>
+                    <p><strong>4. Clinical Differentiation:</strong> Nine-pathway formulation addresses root causes while competitors offer single-ingredient solutions. Cosmetic classification avoids prescription side effects.</p>
+                    <p><strong>5. Subscription Compounding:</strong> Recurring revenue model generates 4x higher annual EBITDA than one-time retail. 92% retention creates durable cash flows.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        (() => {
+            const STORAGE_KEYS = {
+                content: 'ptApp.content.v1',
+                financialsV1: 'ptApp.financials.v1',
+                financialsV2: 'ptApp.financials.v2',
+                admin: 'ptApp.admin.v1'
+            };
+
+            const PASSCODE = '2185';
+            const SCENARIO_COUNT = 10;
+            const BASE_SUBSCRIPTION_PRICE = 189;
+
+            const MARKDOWN_MODEL = {
+                sourceFile: '/Users/stephenprice/Downloads/Restore Financial model.md',
+                sourceDate: 'February 20, 2026',
+                executiveSummary: 'RESTORE projects strong, scalable profitability as a premium subscription model using conservative, real-world operating assumptions.',
+                assumptions: [
+                    'Monthly subscription price: $189',
+                    'CAC: $300 per new subscriber',
+                    'Monthly churn: 8% (92% retention)',
+                    'Total equipment capex: $3,000,000 (depreciated straight-line over 5 years)',
+                    'Shelf-stable formulation with no cold-chain shipping or storage',
+                    'All real-world DTC costs included (processing, returns, support, marketing, compliance)'
+                ],
+                anchors: [
+                    { users: 10000, cogsTotal: 121000, cogsPerUnit: 12.10, ebitdaMarginPct: 60.6 },
+                    { users: 12500, cogsTotal: 151250, cogsPerUnit: 12.10, ebitdaMarginPct: 60.6 },
+                    { users: 15000, cogsTotal: 181500, cogsPerUnit: 12.10, ebitdaMarginPct: 60.6 },
+                    { users: 17500, cogsTotal: 211750, cogsPerUnit: 12.10, ebitdaMarginPct: 60.6 },
+                    { users: 20000, cogsTotal: 242000, cogsPerUnit: 12.10, ebitdaMarginPct: 60.6 }
+                ]
+            };
+
+            const defaultState = {
+                brandUi: {},
+                editableContent: {},
+                scenarioModel: {
+                    source: {
+                        sourceFile: MARKDOWN_MODEL.sourceFile,
+                        sourceDate: MARKDOWN_MODEL.sourceDate,
+                        anchors: deepClone(MARKDOWN_MODEL.anchors)
+                    },
+                    scenarios: createDefaultScenarios()
+                },
+                admin: {
+                    failedAttempts: 0,
+                    lastUnlockedAt: null
+                }
+            };
+
+            const state = deepClone(defaultState);
+            let editableElements = [];
+            let editSnapshot = null;
+            let isEditMode = false;
+
+            const refs = {};
+
+            document.addEventListener('DOMContentLoaded', init);
+
+            function init() {
+                cacheDom();
+                hydrateState();
+                bindEvents();
+                collectEditableElements();
+                applyEditableContent(state.editableContent);
+                renderAll();
+                setEditMode(false);
+            }
+
+            function cacheDom() {
+                refs.body = document.body;
+                refs.launchScreen = document.getElementById('launch-screen');
+                refs.enterButton = document.getElementById('enter-app-btn');
+                refs.appShell = document.getElementById('app-shell');
+                refs.navTabs = Array.from(document.querySelectorAll('.nav-tab[data-section]'));
+                refs.secretEditBtn = document.getElementById('secret-edit-btn');
+                refs.adminPanel = document.getElementById('admin-panel');
+                refs.adminSaveBtn = document.getElementById('admin-save-btn');
+                refs.adminCancelBtn = document.getElementById('admin-cancel-btn');
+                refs.adminResetBtn = document.getElementById('admin-reset-btn');
+                refs.adminExitBtn = document.getElementById('admin-exit-btn');
+                refs.adminToast = document.getElementById('admin-toast');
+
+                refs.scenarioGrid = document.getElementById('scenario-grid');
+                refs.modelSummary = document.getElementById('model-summary');
+                refs.modelAssumptions = document.getElementById('model-assumptions');
+                refs.modelAnchorBody = document.getElementById('model-anchor-body');
+            }
+
+            function bindEvents() {
+                if (refs.enterButton) {
+                    refs.enterButton.addEventListener('click', startApp);
+                }
+
+                refs.navTabs.forEach((tab) => {
+                    tab.addEventListener('click', () => activateSection(tab.dataset.section, tab));
+                });
+
+                if (refs.secretEditBtn) refs.secretEditBtn.addEventListener('click', requestEditMode);
+                if (refs.adminSaveBtn) refs.adminSaveBtn.addEventListener('click', saveEditChanges);
+                if (refs.adminCancelBtn) refs.adminCancelBtn.addEventListener('click', cancelEditChanges);
+                if (refs.adminResetBtn) refs.adminResetBtn.addEventListener('click', resetAllData);
+                if (refs.adminExitBtn) {
+                    refs.adminExitBtn.addEventListener('click', () => {
+                        setEditMode(false);
+                        showToast('Edit mode closed.');
+                    });
+                }
+
+                if (refs.scenarioGrid) {
+                    refs.scenarioGrid.addEventListener('input', handleScenarioInput);
+                }
+            }
+
+            function hydrateState() {
+                const savedFinancialsV2 = loadJson(STORAGE_KEYS.financialsV2, null);
+                if (savedFinancialsV2 && Number(savedFinancialsV2.schemaVersion) === 2 && Array.isArray(savedFinancialsV2.scenarios)) {
+                    state.scenarioModel.scenarios = normalizeScenarioArray(savedFinancialsV2.scenarios);
+                } else {
+                    // Explicitly ignore old v1 forecast payloads and use scenario defaults.
+                    state.scenarioModel.scenarios = createDefaultScenarios();
+                }
+
+                state.scenarioModel.source = deepClone(defaultState.scenarioModel.source);
+
+                const savedContent = loadJson(STORAGE_KEYS.content, null);
+                if (savedContent && typeof savedContent === 'object') {
+                    state.editableContent = savedContent;
+                }
+
+                const savedAdmin = loadJson(STORAGE_KEYS.admin, null);
+                if (savedAdmin && typeof savedAdmin === 'object') {
+                    state.admin = {
+                        failedAttempts: Number(savedAdmin.failedAttempts || 0),
+                        lastUnlockedAt: savedAdmin.lastUnlockedAt || null
+                    };
+                }
+            }
+
+            function collectEditableElements() {
+                const selector = '.card h2, .card h3, .card h4, .card p, .metric-label, .metric-value, .metric-sub';
+                editableElements = [];
+                let index = 0;
+
+                document.querySelectorAll(selector).forEach((element) => {
+                    if (element.closest('#scenario-grid')) return;
+                    if (element.closest('.markdown-model-section')) return;
+                    if (element.closest('#admin-panel')) return;
+                    if (element.hasAttribute('data-calc-output')) return;
+
+                    if (!element.dataset.editKey) {
+                        element.dataset.editKey = `editable-${index}`;
+                    }
+                    index += 1;
+                    editableElements.push(element);
+                });
+            }
+
+            function applyEditableContent(map) {
+                editableElements.forEach((element) => {
+                    const key = element.dataset.editKey;
+                    if (key && Object.prototype.hasOwnProperty.call(map, key)) {
+                        element.innerHTML = map[key];
+                    }
+                });
+            }
+
+            function collectEditableContent() {
+                const map = {};
+                editableElements.forEach((element) => {
+                    const key = element.dataset.editKey;
+                    if (key) {
+                        map[key] = element.innerHTML;
+                    }
+                });
+                return map;
+            }
+
+            function startApp() {
+                if (!refs.appShell || !refs.launchScreen) return;
+                refs.appShell.classList.remove('is-hidden');
+                refs.appShell.removeAttribute('aria-hidden');
+                refs.launchScreen.classList.add('is-exiting');
+                window.setTimeout(() => {
+                    refs.launchScreen.hidden = true;
+                }, 320);
+                const firstTab = refs.navTabs[0];
+                if (firstTab) firstTab.focus();
+            }
+
+            function activateSection(sectionId, tabButton) {
+                const sections = Array.from(document.querySelectorAll('.section'));
+                sections.forEach((section) => section.classList.remove('active'));
+
+                refs.navTabs.forEach((tab) => tab.classList.remove('active'));
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) targetSection.classList.add('active');
+                if (tabButton) tabButton.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function requestEditMode() {
+                const enteredCode = window.prompt('Enter edit passcode');
+                if (enteredCode === null) return;
+
+                if (enteredCode !== PASSCODE) {
+                    state.admin.failedAttempts += 1;
+                    persistAdmin();
+                    showToast('Passcode not recognized.');
+                    return;
+                }
+
+                state.admin.lastUnlockedAt = new Date().toISOString();
+                persistAdmin();
+                editSnapshot = {
+                    editableContent: collectEditableContent(),
+                    scenarioModel: deepClone(state.scenarioModel)
+                };
+                setEditMode(true);
+                showToast('Edit mode enabled.');
+                if (refs.appShell && refs.appShell.classList.contains('is-hidden')) {
+                    startApp();
+                }
+            }
+
+            function setEditMode(active) {
+                isEditMode = active;
+                if (refs.adminPanel) refs.adminPanel.hidden = !active;
+
+                document.querySelectorAll('.admin-only').forEach((element) => {
+                    element.hidden = !active;
+                });
+
+                editableElements.forEach((element) => {
+                    element.contentEditable = active ? 'true' : 'false';
+                    element.classList.toggle('editable-active', active);
+                });
+
+                renderScenarioGrid();
+            }
+
+            function saveEditChanges() {
+                state.editableContent = collectEditableContent();
+                localStorage.setItem(STORAGE_KEYS.content, JSON.stringify(state.editableContent));
+                localStorage.setItem(STORAGE_KEYS.financialsV2, JSON.stringify({
+                    schemaVersion: 2,
+                    scenarios: state.scenarioModel.scenarios
+                }));
+                localStorage.removeItem(STORAGE_KEYS.financialsV1);
+                persistAdmin();
+                setEditMode(false);
+                showToast('Changes saved.');
+            }
+
+            function cancelEditChanges() {
+                if (!editSnapshot) {
+                    setEditMode(false);
+                    return;
+                }
+
+                state.scenarioModel = deepClone(editSnapshot.scenarioModel);
+                applyEditableContent(editSnapshot.editableContent);
+                renderAll();
+                setEditMode(false);
+                showToast('Unsaved changes discarded.');
+            }
+
+            function resetAllData() {
+                const confirmed = window.confirm('Reset all edits and formulas back to defaults?');
+                if (!confirmed) return;
+
+                localStorage.removeItem(STORAGE_KEYS.content);
+                localStorage.removeItem(STORAGE_KEYS.financialsV1);
+                localStorage.removeItem(STORAGE_KEYS.financialsV2);
+                localStorage.removeItem(STORAGE_KEYS.admin);
+                window.location.reload();
+            }
+
+            function handleScenarioInput(event) {
+                const input = event.target.closest('input[data-scenario-index][data-field]');
+                if (!input || !isEditMode) return;
+
+                const scenarioIndex = Number(input.dataset.scenarioIndex);
+                const field = input.dataset.field;
+                const scenario = state.scenarioModel.scenarios[scenarioIndex];
+                if (!scenario) return;
+
+                if (field === 'subscriptionCost') {
+                    scenario.subscriptionCost = sanitizeNumber(input.value, 0, Number.POSITIVE_INFINITY);
+                } else if (field === 'cogsPerUnit') {
+                    scenario.cogsPerUnit = sanitizeNumber(input.value, 0, Number.POSITIVE_INFINITY);
+                } else if (field === 'monthlyUsers') {
+                    scenario.monthlyUsers = Math.round(sanitizeNumber(input.value, 0, Number.POSITIVE_INFINITY));
+                } else if (field === 'ebitdaMarginPct') {
+                    scenario.ebitdaMarginPct = sanitizeNumber(input.value, 0, 100);
+                }
+
+                refreshScenarioOutputsFor(scenarioIndex);
+            }
+
+            function renderAll() {
+                renderScenarioGrid();
+                renderMarkdownReference();
+            }
+
+            function renderScenarioGrid() {
+                if (!refs.scenarioGrid) return;
+                const scenariosHtml = state.scenarioModel.scenarios.map((scenario, index) => {
+                    const derived = computeScenarioDerived(scenario);
+                    return `
+                        <div class="scenario-card" data-scenario-index="${index}">
+                            <h4>${escapeHtml(scenario.name)}<\/h4>
+                            <table class="scenario-table">
+                                <tbody>
+                                    <tr>
+                                        <td>Subscription Cost ($/month)<\/td>
+                                        <td>
+                                            ${isEditMode
+                                                ? `<input class="fin-input scenario-input" type="number" data-scenario-index="${index}" data-field="subscriptionCost" min="0" step="0.01" value="${toInputString(scenario.subscriptionCost)}">`
+                                                : `<span class="scenario-output">${formatCurrencyFixed(scenario.subscriptionCost)}<\/span>`
+                                            }
+                                        <\/td>
+                                    <\/tr>
+                                    <tr>
+                                        <td>COGS per Unit ($/month supply)<\/td>
+                                        <td>
+                                            ${isEditMode
+                                                ? `<input class="fin-input scenario-input" type="number" data-scenario-index="${index}" data-field="cogsPerUnit" min="0" step="0.01" value="${toInputString(scenario.cogsPerUnit)}">`
+                                                : `<span class="scenario-output">${formatCurrencyFixed(scenario.cogsPerUnit)}<\/span>`
+                                            }
+                                        <\/td>
+                                    <\/tr>
+                                    <tr class="scenario-derived">
+                                        <td>Gross Margin (%)<\/td>
+                                        <td><span class="scenario-output" data-output="gross-margin">${formatPercent(derived.grossMarginPct)}<\/span><\/td>
+                                    <\/tr>
+                                    <tr>
+                                        <td>Monthly Users<\/td>
+                                        <td>
+                                            ${isEditMode
+                                                ? `<input class="fin-input scenario-input" type="number" data-scenario-index="${index}" data-field="monthlyUsers" min="0" step="1000" value="${toInputString(scenario.monthlyUsers)}">`
+                                                : `<span class="scenario-output">${formatNumber(scenario.monthlyUsers)}<\/span>`
+                                            }
+                                        <\/td>
+                                    <\/tr>
+                                    <tr>
+                                        <td>EBITDA Margin (%)<\/td>
+                                        <td>
+                                            ${isEditMode
+                                                ? `<input class="fin-input scenario-input" type="number" data-scenario-index="${index}" data-field="ebitdaMarginPct" min="0" max="100" step="0.1" value="${toInputString(scenario.ebitdaMarginPct)}">`
+                                                : `<span class="scenario-output">${formatPercent(scenario.ebitdaMarginPct)}<\/span>`
+                                            }
+                                        <\/td>
+                                    <\/tr>
+                                    <tr class="scenario-derived">
+                                        <td>Monthly Revenue<\/td>
+                                        <td><span class="scenario-output" data-output="monthly-revenue">${formatCurrencyCompact(derived.monthlyRevenue)}<\/span><\/td>
+                                    <\/tr>
+                                    <tr class="scenario-derived">
+                                        <td>Monthly EBITDA<\/td>
+                                        <td><span class="scenario-output" data-output="monthly-ebitda">${formatCurrencyCompact(derived.monthlyEbitda)}<\/span><\/td>
+                                    <\/tr>
+                                    <tr class="scenario-derived">
+                                        <td>Annual Revenue<\/td>
+                                        <td><span class="scenario-output" data-output="annual-revenue">${formatCurrencyCompact(derived.annualRevenue)}<\/span><\/td>
+                                    <\/tr>
+                                    <tr class="scenario-derived">
+                                        <td>Annual EBITDA<\/td>
+                                        <td><span class="scenario-output" data-output="annual-ebitda">${formatCurrencyCompact(derived.annualEbitda)}<\/span><\/td>
+                                    <\/tr>
+                                <\/tbody>
+                            <\/table>
+                        <\/div>
+                    `;
+                }).join('');
+
+                refs.scenarioGrid.innerHTML = scenariosHtml;
+            }
+
+            function refreshScenarioOutputsFor(scenarioIndex) {
+                const scenario = state.scenarioModel.scenarios[scenarioIndex];
+                if (!scenario || !refs.scenarioGrid) return;
+                const card = refs.scenarioGrid.querySelector(`.scenario-card[data-scenario-index="${scenarioIndex}"]`);
+                if (!card) return;
+
+                const derived = computeScenarioDerived(scenario);
+                setScenarioOutput(card, 'gross-margin', formatPercent(derived.grossMarginPct));
+                setScenarioOutput(card, 'monthly-revenue', formatCurrencyCompact(derived.monthlyRevenue));
+                setScenarioOutput(card, 'monthly-ebitda', formatCurrencyCompact(derived.monthlyEbitda));
+                setScenarioOutput(card, 'annual-revenue', formatCurrencyCompact(derived.annualRevenue));
+                setScenarioOutput(card, 'annual-ebitda', formatCurrencyCompact(derived.annualEbitda));
+            }
+
+            function setScenarioOutput(card, outputKey, value) {
+                const node = card.querySelector(`[data-output="${outputKey}"]`);
+                if (node) node.textContent = value;
+            }
+
+            function computeScenarioDerived(scenario) {
+                const subscriptionCost = Number(scenario.subscriptionCost || 0);
+                const cogsPerUnit = Number(scenario.cogsPerUnit || 0);
+                const monthlyUsers = Number(scenario.monthlyUsers || 0);
+                const ebitdaMarginPct = Number(scenario.ebitdaMarginPct || 0);
+
+                const grossMarginPct = subscriptionCost > 0
+                    ? ((subscriptionCost - cogsPerUnit) / subscriptionCost) * 100
+                    : 0;
+                const monthlyRevenue = subscriptionCost * monthlyUsers;
+                const monthlyEbitda = monthlyRevenue * (ebitdaMarginPct / 100);
+                const annualRevenue = monthlyRevenue * 12;
+                const annualEbitda = monthlyEbitda * 12;
+
+                return {
+                    grossMarginPct,
+                    monthlyRevenue,
+                    monthlyEbitda,
+                    annualRevenue,
+                    annualEbitda
+                };
+            }
+
+            function renderMarkdownReference() {
+                if (!refs.modelSummary || !refs.modelAssumptions || !refs.modelAnchorBody) return;
+
+                const sourceDate = state.scenarioModel.source.sourceDate || MARKDOWN_MODEL.sourceDate;
+                refs.modelSummary.textContent = `${MARKDOWN_MODEL.executiveSummary} Source date: ${sourceDate}.`;
+
+                refs.modelAssumptions.innerHTML = MARKDOWN_MODEL.assumptions
+                    .map((item) => `<li>${escapeHtml(item)}<\/li>`)
+                    .join('');
+
+                refs.modelAnchorBody.innerHTML = state.scenarioModel.source.anchors.map((anchor) => `
+                    <tr>
+                        <td>${formatNumber(anchor.users)}<\/td>
+                        <td>${formatCurrencyCompact(anchor.cogsTotal)}<\/td>
+                        <td>${formatCurrencyFixed(anchor.cogsPerUnit)}<\/td>
+                        <td>${formatPercent(anchor.ebitdaMarginPct)}<\/td>
+                    <\/tr>
+                `).join('');
+            }
+
+            function createDefaultScenarios() {
+                const scenarios = [];
+                for (let idx = 0; idx < SCENARIO_COUNT; idx += 1) {
+                    const monthlyUsers = (idx + 1) * 1000;
+                    const cogsPerUnit = interpolateAnchorValue(monthlyUsers, 'cogsPerUnit');
+                    const ebitdaMarginPct = interpolateAnchorValue(monthlyUsers, 'ebitdaMarginPct');
+                    scenarios.push({
+                        id: `scenario-${idx + 1}`,
+                        name: `Scenario ${idx + 1}`,
+                        subscriptionCost: BASE_SUBSCRIPTION_PRICE,
+                        cogsPerUnit: Math.max(0, cogsPerUnit),
+                        monthlyUsers,
+                        ebitdaMarginPct: Math.min(Math.max(ebitdaMarginPct, 0), 100)
+                    });
+                }
+                return scenarios;
+            }
+
+            function interpolateAnchorValue(users, key) {
+                const anchors = MARKDOWN_MODEL.anchors;
+                if (anchors.length < 2) return Number(anchors[0]?.[key] || 0);
+
+                if (users <= anchors[0].users) {
+                    return interpolateLinear(
+                        users,
+                        anchors[0].users, Number(anchors[0][key]),
+                        anchors[1].users, Number(anchors[1][key])
+                    );
+                }
+
+                const lastIndex = anchors.length - 1;
+                if (users >= anchors[lastIndex].users) {
+                    return interpolateLinear(
+                        users,
+                        anchors[lastIndex - 1].users, Number(anchors[lastIndex - 1][key]),
+                        anchors[lastIndex].users, Number(anchors[lastIndex][key])
+                    );
+                }
+
+                for (let idx = 0; idx < anchors.length - 1; idx += 1) {
+                    const start = anchors[idx];
+                    const end = anchors[idx + 1];
+                    if (users >= start.users && users <= end.users) {
+                        return interpolateLinear(users, start.users, Number(start[key]), end.users, Number(end[key]));
+                    }
+                }
+
+                return Number(anchors[lastIndex][key] || 0);
+            }
+
+            function interpolateLinear(x, x0, y0, x1, y1) {
+                if (x1 === x0) return y0;
+                const ratio = (x - x0) / (x1 - x0);
+                return y0 + ((y1 - y0) * ratio);
+            }
+
+            function normalizeScenarioArray(rawScenarios) {
+                const defaults = createDefaultScenarios();
+                const normalized = [];
+
+                for (let idx = 0; idx < SCENARIO_COUNT; idx += 1) {
+                    const fallback = defaults[idx];
+                    const raw = rawScenarios[idx] || {};
+                    normalized.push({
+                        id: typeof raw.id === 'string' && raw.id.trim() ? raw.id.trim() : fallback.id,
+                        name: typeof raw.name === 'string' && raw.name.trim() ? raw.name.trim() : fallback.name,
+                        subscriptionCost: parseNumberWithFallback(raw.subscriptionCost, fallback.subscriptionCost, 0, Number.POSITIVE_INFINITY),
+                        cogsPerUnit: parseNumberWithFallback(raw.cogsPerUnit, fallback.cogsPerUnit, 0, Number.POSITIVE_INFINITY),
+                        monthlyUsers: Math.round(parseNumberWithFallback(raw.monthlyUsers, fallback.monthlyUsers, 0, Number.POSITIVE_INFINITY)),
+                        ebitdaMarginPct: parseNumberWithFallback(raw.ebitdaMarginPct, fallback.ebitdaMarginPct, 0, 100)
+                    });
+                }
+
+                return normalized;
+            }
+
+            function parseNumberWithFallback(raw, fallback, min = 0, max = Number.POSITIVE_INFINITY) {
+                const parsed = Number(raw);
+                if (!Number.isFinite(parsed)) return fallback;
+                return Math.min(Math.max(parsed, min), max);
+            }
+
+            function persistAdmin() {
+                localStorage.setItem(STORAGE_KEYS.admin, JSON.stringify(state.admin));
+            }
+
+            function showToast(message) {
+                if (!refs.adminToast) return;
+                refs.adminToast.textContent = message;
+                refs.adminToast.hidden = false;
+                window.clearTimeout(showToast.timeout);
+                showToast.timeout = window.setTimeout(() => {
+                    refs.adminToast.hidden = true;
+                }, 2200);
+            }
+
+            function loadJson(key, fallback) {
+                try {
+                    const raw = localStorage.getItem(key);
+                    if (!raw) return fallback;
+                    return JSON.parse(raw);
+                } catch (error) {
+                    return fallback;
+                }
+            }
+
+            function sanitizeNumber(raw, min = 0, max = Number.POSITIVE_INFINITY) {
+                const parsed = Number(raw);
+                if (!Number.isFinite(parsed)) return min;
+                return Math.min(Math.max(parsed, min), max);
+            }
+
+            function formatNumber(value) {
+                return Math.round(Number(value || 0)).toLocaleString('en-US');
+            }
+
+            function formatCurrencyWhole(value) {
+                return `$${Math.round(Number(value || 0)).toLocaleString('en-US')}`;
+            }
+
+            function formatCurrencyFixed(value) {
+                return `$${Number(value || 0).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })}`;
+            }
+
+            function formatCurrencyCompact(value) {
+                const numeric = Number(value || 0);
+                const absolute = Math.abs(numeric);
+                if (absolute >= 1000000) {
+                    return `$${(numeric / 1000000).toFixed(2)}M`;
+                }
+                return `$${Math.round(numeric / 1000).toLocaleString('en-US')}K`;
+            }
+
+            function formatPercent(value) {
+                return `${Number(value || 0).toFixed(1)}%`;
+            }
+
+            function toInputString(value) {
+                if (!Number.isFinite(Number(value))) return '';
+                return String(Number(value));
+            }
+
+            function escapeHtml(value) {
+                return String(value)
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#39;');
+            }
+
+            function deepClone(value) {
+                return JSON.parse(JSON.stringify(value));
+            }
+        })();
+    </script>
+</body>
+</html>
